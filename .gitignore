@@ -1,0 +1,37 @@
+# محیط مجازی پایتون
+.venv/
+venv/
+env/
+
+# فایل‌های کش پایتون
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# دیتابیس‌ها و داده‌های محلی
+web_app/data/participants_web.db
+data/participants.db
+data/session_state.json
+data/app_config.json
+.nicegui/
+web_app/.nicegui/
+
+# گزارش‌های تولیدشده
+reports/
+logs/
+data/backups/
+
+# تنظیمات IDE
+.vscode/
+.idea/
+
+# فایل‌های موقت ویندوز
+Thumbs.db
+Desktop.ini
+
+# فایل‌های PowerShell و پروژه‌های دسکتاپ
+*.ps1
