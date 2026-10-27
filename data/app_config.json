@@ -1,0 +1,41 @@
+{
+  "mode": "custom",
+  "fast_mode": true,
+  "sections": {
+    "prologue": false,
+    "interludes_extended": false,
+    "nights": false,
+    "flashbacks": false,
+    "multilayer_memory": false,
+    "council_prep": false,
+    "council_outro": false,
+    "letter_to_self": false,
+    "epilogue": true
+  },
+  "phases": {
+    "phase1": true,
+    "phase2": true,
+    "phase3": true,
+    "phase4": true,
+    "hexaco": true
+  },
+  "audio": {
+    "enabled": true,
+    "volume": 0.4
+  },
+  "auto_resume": true,
+  "inner_dialogue": "off",
+  "accessibility": {
+    "large_fonts": false,
+    "high_contrast": false,
+    "reduce_motion": false
+  },
+  "assessment_tools": {
+    "hexaco": true,
+    "crt": true,
+    "sd3": true,
+    "social_desirability": true,
+    "postgame_feedback": true,
+    "sme_review": true
+  }
+}

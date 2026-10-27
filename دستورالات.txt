@@ -1,0 +1,98 @@
+# 1. رفتن به ریشه
+cd C:\Users\Reza\Desktop\truthline_pyqt
+
+# 2. فعال‌سازی venv (prompt باید (.venv) نشان دهد)
+.\.venv\Scripts\Activate.ps1
+
+# 3. اجرای برنامه
+python -m web_app.app
+
+# 4. تست از کامپیوتر: http://localhost:8080
+# 5. تست از گوشی: http://192.168.1.5:8080 (یا IP فعلی کامپیوتر)
+
+# 6. توقف: Ctrl+C در ترمینال
+
+
+
+Get-Process Code -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+
+
+ب: پاک‌سازی Cache عمومی
+powershell
+
+Remove-Item -Recurse -Force "$env:APPDATA\Code\Cache" -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force "$env:APPDATA\Code\CachedData" -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force "$env:APPDATA\Code\CachedExtensionVSIXs" -ErrorAction SilentlyContinue
+
+
+پاک‌سازی Workspace Storage (کش Pylance)
+powershell
+
+Remove-Item -Recurse -Force "$env:APPDATA\Code\User\workspaceStorage" -ErrorAction SilentlyContinue
+
+پاک‌سازی کش Pylance (جداگانه)
+
+اگر فقط می‌خواهی Pylance را ریست کنی (نه کل VS Code):
+powershell
+
+Remove-Item -Recurse -Force "$env:APPDATA\Code\User\workspaceStorage" -ErrorAction SilentlyContinue
+
+جایگزین سریع‌تر: از داخل VS Code:
+
+    Ctrl+Shift+P
+
+    تایپ کن: Python: Restart Language Server
+
+    Enter
+
+pip cache purge
+
+# ۱. حذف __pycache__ و .pyc
+Get-ChildItem -Recurse -Directory -Filter "__pycache__" -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+Get-ChildItem -Recurse -File -Include "*.pyc" -ErrorAction SilentlyContinue | Remove-Item -Force -ErrorAction SilentlyContinue
+
+# ۲. اجرای مجدد
+python -m web_app.app
+
+🛡️ دستور «همه‌کاره‌ی امن» (توصیه‌شده)
+
+اگر مطمئن نیستی کدام را لازم داری، این را اجرا کن:
+powershell
+
+Write-Host "🧹 پاک‌سازی کش..." -ForegroundColor Cyan
+
+# ۱. بستن VS Code
+Get-Process Code -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+Write-Host "  ✓ VS Code بسته شد" -ForegroundColor Gray
+
+# ۲. حذف __pycache__
+$count = (Get-ChildItem -Recurse -Directory -Filter "__pycache__" -ErrorAction SilentlyContinue | Measure-Object).Count
+Get-ChildItem -Recurse -Directory -Filter "__pycache__" -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+Write-Host "  ✓ $count پوشه‌ی __pycache__ حذف شد" -ForegroundColor Gray
+
+# ۳. حذف کش ابزارها
+Remove-Item -Recurse -Force ".pytest_cache",".mypy_cache",".ruff_cache" -ErrorAction SilentlyContinue
+Write-Host "  ✓ کش ابزارهای توسعه حذف شد" -ForegroundColor Gray
+
+# ۴. حذف کش Pylance
+Remove-Item -Recurse -Force "$env:APPDATA\Code\User\workspaceStorage" -ErrorAction SilentlyContinue
+Write-Host "  ✓ کش Pylance پاک شد" -ForegroundColor Gray
+
+# ۵. حذف کش عمومی VS Code
+Remove-Item -Recurse -Force "$env:APPDATA\Code\Cache","$env:APPDATA\Code\CachedData" -ErrorAction SilentlyContinue
+Write-Host "  ✓ کش عمومی VS Code پاک شد" -ForegroundColor Gray
+
+Write-Host ""
+Write-Host "✅ تمام! حالا VS Code رو باز کن:" -ForegroundColor Green
+Write-Host "   code ." -ForegroundColor Yellow
+
+بعد از اجرا:
+powershell
+
+code .
+
+یا از منوی استارت VS Code را باز کن.
+
+
+http://localhost:8080/admin
+رمز پیش‌فرض: truthline-2026

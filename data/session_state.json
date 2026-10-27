@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "saved_at": 1792238124.4755523,
+  "participant_id": "7b1d38bc",
+  "current_scene": "phase3",
+  "current_scenario_indices": {
+    "phase1": 5,
+    "phase2": 5,
+    "phase3": 0,
+    "phase4": 0
+  },
+  "flags": {
+    "council_prep_shown": false,
+    "letter_shown": false,
+    "nights_completed": [],
+    "phases_completed": [
+      "phase1"
+    ]
+  },
+  "relationships": {
+    "li": -3,
+    "rahimi": -1,
+    "artemis": 0
+  },
+  "choice_memory": {
+    "VH-01": 3,
+    "DA-01": 1,
+    "DA-02": 1,
+    "MC-01": 1,
+    "VH-02": 2,
+    "F-02": 2,
+    "CF-01": 2,
+    "TR-01": 3,
+    "TR-02": 1,
+    "BC-01": 1,
+    "BC-02": 3,
+    "CF-02": 1
+  },
+  "random_seed": 2806701904
+}

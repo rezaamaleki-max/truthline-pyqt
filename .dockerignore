@@ -1,0 +1,46 @@
+# پوشه‌های سیستمی پایتون
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# محیط مجازی (در Docker نیازی نیست)
+.venv/
+venv/
+env/
+
+# مخازن Git
+.git/
+.gitignore
+
+# تنظیمات IDE
+.vscode/
+.idea/
+
+# پوشه‌های بزرگ و غیرضروری
+reports/
+logs/
+data/backups/
+data/scenarios/phase1/*_backup*
+
+# فایل‌های موقت
+*.log
+*.tmp
+
+# نسخه‌ی دسکتاپ (در وب استفاده نمی‌شود)
+main.py
+scenes/
+widgets/
+analysis/
+assets/videos/opening.mp4
+assets/videos/opening.webm
+assets/videos/opening_alt.webm
+
+# فایل‌های سیستمی ویندوز
+Thumbs.db
+Desktop.ini
+*.ps1
