@@ -18,9 +18,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # ابتدا فقط requirements را کپی می‌کنیم تا cache بهتر عمل کند
+# ابتدا فقط requirements را کپی می‌کنیم تا cache بهتر عمل کند
 COPY requirements-web.txt .
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements-web.txt
+
+# نصب پکیج‌ها از طریق میرور چابکان
+RUN pip install --no-cache-dir \
+    --index-url https://mirror2.chabokan.net/pypi/simple/ \
+    --trusted-host mirror2.chabokan.net \
+    -r requirements-web.txt
 
 # سپس کل پروژه
 COPY . .
