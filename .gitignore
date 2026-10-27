@@ -1,37 +1,34 @@
-# محیط مجازی پایتون
+@"
+# Python
+__pycache__/
+*.pyc
+*.pyo
 .venv/
 venv/
 env/
 
-# فایل‌های کش پایتون
-__pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.pyright/
-
-# دیتابیس‌ها و داده‌های محلی
+# Database (runtime)
 web_app/data/participants_web.db
 data/participants.db
 data/session_state.json
-data/app_config.json
-.nicegui/
-web_app/.nicegui/
+*.db-journal
+*.db-wal
 
-# گزارش‌های تولیدشده
-reports/
+# Logs & backups
 logs/
 data/backups/
 
-# تنظیمات IDE
+# IDE
 .vscode/
 .idea/
 
-# فایل‌های موقت ویندوز
+# OS
+.DS_Store
 Thumbs.db
-Desktop.ini
 
-# فایل‌های PowerShell و پروژه‌های دسکتاپ
-*.ps1
+# Sensitive/large data
+سوابق کد/
+دستورالات.txt
+analysis_output/
+reports/
+"@ | Out-File -FilePath .gitignore -Encoding UTF8
