@@ -2,12 +2,15 @@
 # پوشه‌های حذف‌شده: logs, data/backups, سوابق کد
 .
 ├── .nicegui
-│   ├── storage-user-01af9f7c-c220-420f-9753-c58ac46f87b1.json
-│   ├── storage-user-5e8c14ca-819b-49ad-9e14-25d40612dbaf.json
-│   ├── storage-user-a409afb1-88f5-443f-9818-1ce846529224.json
-│   ├── storage-user-a726e1fd-a153-4763-b482-b187b8d230c2.json
-│   └── storage-user-d0a582f4-5b0c-499a-8c28-d693b6564f82.json
+│   ├── storage-user-296c5e98-c3ab-427b-bf44-8ff76cec757f.json
+│   ├── storage-user-74ef0e29-0212-4954-8055-fab258e5cee7.json
+│   ├── storage-user-8c82bce4-0e9d-4cc9-8aa3-7b5ab7edceae.json
+│   ├── storage-user-8e80b616-8114-40c1-a52d-24a6b208cd20.json
+│   ├── storage-user-aa6e1abd-f83c-43dc-977f-f45cf16f2013.json
+│   ├── storage-user-d7597989-f8f3-4cb9-b8ff-803ebf187930.json
+│   └── storage-user-d7ba3e91-bc3e-4eb2-a5af-5e9d92eb0152.json
 ├── .vscode
+│   ├── launch.json
 │   └── settings.json
 ├── analysis
 │   ├── aggregate_report.py
@@ -188,6 +191,7 @@
 ├── reports
 │   ├── Truthline_Report_TEST_cb7b6c91.pdf
 │   ├── Truthline_Report_TEST_ef8830c1.pdf
+│   ├── Truthline_Report_TEST_f39369e0.pdf
 │   └── Truthline_Report_b696862b.pdf
 ├── scenes
 │   ├── __init__.py
@@ -211,7 +215,6 @@
 │   ├── theater_end_scene.py
 │   └── video_intro_scene.py
 ├── web_app
-│   ├── .nicegui
 │   ├── components
 │   │   ├── __init__.py
 │   │   ├── accountability_dialog.py
@@ -369,14 +372,16 @@
 │   ├── typography.py
 │   ├── video_widget.py
 │   └── visual_effects.py
+├── .dockerignore
+├── .gitignore
+├── Dockerfile
 ├── activate.ps1
-├── check_revealing_words.py
 ├── config.py
-├── locustfile.py
 ├── main.py
 ├── make_tree.py
 ├── monitor.py
 ├── project_tree.txt
+├── requirements-web.txt
 ├── requirements.txt
 ├── truthline_pyqt.code-workspace
 └── دستورالات.txt

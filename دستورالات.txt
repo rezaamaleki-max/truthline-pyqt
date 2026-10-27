@@ -96,3 +96,6 @@ code .
 
 http://localhost:8080/admin
 رمز پیش‌فرض: truthline-2026
+
+
+$env:Path += ";C:\Program Files\Git\cmd" 
