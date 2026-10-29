@@ -368,12 +368,7 @@ FONT_INJECT_JS = """
 (function() {
     if (document.getElementById('tl-font-style')) return;
     function _assetUrl(relPath) {
-        var p = window.location.pathname;
-        var slash = p.lastIndexOf('/');
-        var basePath = (slash >= 0)
-            ? p.substring(0, slash + 1)
-            : '/';
-        return basePath + relPath;
+        return '/' + String(relPath).replace(/^[/]+/, '');
     }
     var fontUrl = _assetUrl('assets/fonts/Vazirmatn-Regular.ttf');
     var style = document.createElement('style');

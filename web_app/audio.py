@@ -119,12 +119,7 @@ def install_audio_core():
         }
 
         function _assetUrl(relPath) {
-            var p = window.location.pathname;
-            var slash = p.lastIndexOf('/');
-            var basePath = (slash >= 0)
-                ? p.substring(0, slash + 1)
-                : '/';
-            return basePath + relPath;
+            return '/' + String(relPath).replace(/^[/]+/, '');
         }
 
         var MUSIC_TRACKS = __MUSIC_TRACKS__;
