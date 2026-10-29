@@ -6,7 +6,9 @@ import json
 # ✅ مسیر پوشه‌ی web_app
 WEB_APP_DIR = os.path.dirname(os.path.abspath(__file__))
 # ✅ دیتابیس مستقل در web_app/data/
-DB_PATH = os.path.join(WEB_APP_DIR, "data", "participants_web.db")
+DB_DIR = os.path.join(WEB_APP_DIR, "data", "db")
+os.makedirs(DB_DIR, exist_ok=True)
+DB_PATH = os.path.join(DB_DIR, "participants_web.db")
 
 # ✅ اطمینان از وجود پوشه
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
