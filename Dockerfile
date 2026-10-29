@@ -24,8 +24,10 @@ COPY requirements-web.txt .
 
 # نصب پکیج‌ها از طریق میرور چابکان
 RUN pip install --no-cache-dir \
-    --index-url https://mirror2.chabokan.net/pypi/simple/ \
-    --trusted-host mirror2.chabokan.net \
+    --index-url https://package-mirror.liara.ir/repository/pypi/simple \
+    --trusted-host package-mirror.liara.ir \
+    --retries 5 \
+    --timeout 60 \
     -r requirements-web.txt
 
 # سپس کل پروژه
