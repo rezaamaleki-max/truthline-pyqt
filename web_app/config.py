@@ -63,7 +63,7 @@ def calculate_evidence_value(
     formula: str, choice: dict, decision_time: int
 ) -> float:
     """ارزیابی فرمول‌های شاهد"""
-    from core.evidence_helpers import (
+    from web_app.engine.evidence_helpers import (
         evaluate_choice_formula, evaluate_time_formula,
     )
     cid = choice.get("id", 0)
