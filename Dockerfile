@@ -12,6 +12,7 @@ WORKDIR /app
 
 # نصب وابستگی‌های سیستمی لازم برای گزارش‌گیری PDF فارسی
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
     libfreetype6 \
     libjpeg62-turbo \
     libpng16-16 \

@@ -44,3 +44,8 @@ assets/videos/opening_alt.webm
 Thumbs.db
 Desktop.ini
 *.ps1
+
+web_app/data/participants_web.db
+web_app/data/participants_web.db-*
+web_app/data/db/
+.nicegui/
