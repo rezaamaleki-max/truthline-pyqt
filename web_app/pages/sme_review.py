@@ -8,6 +8,8 @@ from web_app.data.scenario_metadata import (
     SCENARIOS_METADATA, COMPETENCY_DEFINITIONS, get_full_competency_label
 )
 
+from web_app.admin_config import load_admin_config  # ✅ اضافه شد
+
 @ui.page('/sme-review')
 def sme_review_page():
     if not is_section_enabled("sme_review"):
@@ -15,19 +17,58 @@ def sme_review_page():
         return
 
     ui.query('body').style(PAGE_CSS)
-    
-    # متغیرهای وضعیت
+
+    # ✅ بخش احراز هویت (رمز عبور)
+    if not app.storage.user.get('sme_authenticated'):
+        with ui.column().classes('w-full h-screen items-center justify-center bg-slate-900'):
+            with ui.card().classes('p-8 bg-slate-800 border-2 border-cyan-500 rounded-xl shadow-2xl'):
+                ui.label("🔒 ورود متخصصان").classes('text-2xl font-bold text-cyan-400 mb-6 text-center w-full')
+                
+                pwd_input = ui.input(
+                    placeholder="رمز عبور را وارد کنید", 
+                    password=True, 
+                    password_toggle_button=True
+                ).classes('w-64 text-lg bg-slate-700 text-white').props('dark')
+                
+                def check_password():
+                    cfg = load_admin_config()
+                    correct_pwd = cfg.get("sme_password", "expert-2026")
+                    
+                    if pwd_input.value == correct_pwd:
+                        app.storage.user['sme_authenticated'] = True
+                        ui.navigate.to('/sme-review')  # رفرش صفحه
+                    else:
+                        ui.notify("رمز عبور نادرست است.", type='negative', position='top')
+                
+                ui.button("ورود", on_click=check_password).classes(
+                    'w-full mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 rounded'
+                )
+                pwd_input.on('keydown.enter', check_password)
+        return
+
+    # =========================================================
+    # ادامه‌ی کد اصلی (اگر کاربر احراز هویت شده باشد)
+    # =========================================================
     state = {
         "expert_name": "",
-        "evaluations": {}, # {scenario_id: {clarity: x, ...}}
+        "evaluations": {},
     }
 
     # --- هدر صفحه ---
     with ui.row().classes('w-full items-center justify-between p-4 bg-slate-900 border-b border-cyan-500'):
         ui.label("فرم ارزیابی متخصصان (SME)").classes('text-2xl font-bold text-cyan-400')
-        # ورودی نام متخصص
-        name_input = ui.input(placeholder="نام شما (اختیاری)").classes('bg-slate-800 text-white').props('dark')
-        name_input.on_value_change(lambda e: state.update({"expert_name": e.value}))
+        
+        with ui.row().classes('items-center gap-4'):
+            # ورودی نام متخصص
+            name_input = ui.input(placeholder="نام شما (اختیاری)").classes('bg-slate-800 text-white').props('dark')
+            name_input.on_value_change(lambda e: state.update({"expert_name": e.value}))
+            
+            # ✅ دکمه خروج
+            def logout():
+                app.storage.user['sme_authenticated'] = False
+                ui.navigate.to('/sme-review')
+            
+            ui.button("خروج", on_click=logout).classes('bg-red-600 hover:bg-red-500 text-white text-sm py-1 px-4 rounded')
 
     # --- چیدمان دو پنلی ---
     splitter = ui.splitter(value=25).classes('w-full h-[calc(100vh-80px)]')

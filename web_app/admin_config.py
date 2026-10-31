@@ -14,6 +14,7 @@ CONFIG_PATH = os.path.join(
 
 DEFAULT_CONFIG = {
     "admin_password": "truthline-2026",
+    "sme_password": "expert-2026",  # ✅ رمز ورود متخصصان
     # ✅ بخش جدید: مسیریابی سفارشی
     # مثال: اگر بخواهید بعد از فاز ۱ به HEXACO بروید:
     # "routing": {"phase1": "/hexaco", "hexaco": "/phase2"}
