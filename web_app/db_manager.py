@@ -148,7 +148,17 @@ def init_db():
             created_at REAL
         )
     ''')
-
+    # ✅ جدول جدید: مشخصات خبرگان
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS web_sme_experts (
+            expert_id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            education TEXT NOT NULL,
+            current_job TEXT NOT NULL,
+            contact_info TEXT,
+            created_at REAL
+        )
+    ''')
     # ✅ جدول پیشرفت فازها (برای resume)
     c.execute('''
         CREATE TABLE IF NOT EXISTS web_phase_progress (
@@ -976,6 +986,15 @@ def save_sme_review(
     try:
         conn = get_connection()
         c = conn.cursor()
+        # ۱. ثبت یا به‌روزرسانی مشخصات خبره
+        c.execute('''
+            INSERT INTO web_sme_experts (expert_id, name, education, current_job, contact_info, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+            ON CONFLICT(expert_id) DO UPDATE SET
+            name=excluded.name, education=excluded.education, current_job=excluded.current_job, contact_info=excluded.contact_info
+        ''', (expert_id, expert_name, "", "", "", time.time()))
+        
+        # ۲. ثبت ارزیابی
         c.execute('''
             INSERT INTO web_sme_reviews
             (expert_id, expert_name, scenario_id, clarity, realism,
@@ -990,4 +1009,22 @@ def save_sme_review(
         return True
     except Exception as e:
         print(f"❌ خطا در ذخیره ارزیابی متخصص: {e}")
+        return False
+
+def save_sme_expert_profile(
+    expert_id: str, name: str, education: str, current_job: str, contact_info: str
+) -> bool:
+    try:
+        conn = get_connection()
+        c = conn.cursor()
+        c.execute('''
+            INSERT OR REPLACE INTO web_sme_experts
+            (expert_id, name, education, current_job, contact_info, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (expert_id, name, education, current_job, contact_info, time.time()))
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        print(f"❌ خطا در ذخیره مشخصات خبره: {e}")
         return False
