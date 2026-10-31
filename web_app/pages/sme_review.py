@@ -102,6 +102,13 @@ def sme_review_page():
     profile = app.storage.user.get('sme_profile')
     evaluated_list = app.storage.user.get('sme_evaluated', [])
 
+    # ✅ بررسی امنیتی برای Pylance (اگر به هر دلیلی مقدار نداشتند، برگرد به صفحه ورود)
+    if not expert_id or not profile:
+        app.storage.user['sme_authenticated'] = False
+        app.storage.user['sme_profile'] = None
+        ui.navigate.to('/sme-review')
+        return
+
     # --- هدر صفحه ---
     with ui.row().classes('w-full items-center justify-between p-4 bg-slate-900 border-b border-cyan-500'):
         ui.label(f"ارزیابی متخصصان - {profile['name']} ({profile['education']})").classes('text-xl font-bold text-cyan-400')
