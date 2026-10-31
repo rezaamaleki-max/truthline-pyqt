@@ -3,6 +3,8 @@ from nicegui import ui, app
 from web_app.config import PAGE_CSS
 from web_app.engine.scenario_runner import render_phase1
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
+
 
 
 @ui.page('/phase1')
@@ -12,6 +14,8 @@ async def phase1_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("phase1", participant_id, session_id)  # ✅ ثبت زمان ورود
 
     setup_page_audio("phase1")
 

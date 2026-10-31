@@ -4,6 +4,7 @@ from web_app.config import PAGE_CSS
 from web_app.db_manager import save_social_desirability_data, log_event_threadsafe
 from web_app.data.items.social_desirability_items import SD_ITEMS, compute_sd_score
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 @ui.page('/sd')
@@ -13,6 +14,8 @@ def sd_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("sd", participant_id, session_id)  
 
     setup_page_audio(None)
 

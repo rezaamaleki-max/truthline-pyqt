@@ -7,6 +7,7 @@ from web_app.data.items.hexaco_items import (
     HEXACO_ITEMS, LIKERT_LABELS, compute_factor_scores,
 )
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 @ui.page('/hexaco')
@@ -16,6 +17,8 @@ def hexaco_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("hexaco", participant_id, session_id)  
 
     setup_page_audio(None)
 

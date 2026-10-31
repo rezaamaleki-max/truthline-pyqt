@@ -132,6 +132,23 @@ def init_db():
             FOREIGN KEY (participant_id) REFERENCES participants_web(participant_id)
         )
     ''')
+    # ✅ جدول ارزیابی متخصصان (SME)
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS web_sme_reviews (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            expert_id TEXT,
+            expert_name TEXT,
+            scenario_id TEXT,
+            clarity INTEGER,
+            realism INTEGER,
+            cultural_fit INTEGER,
+            competency_match INTEGER,
+            essentiality INTEGER,
+            comment TEXT,
+            created_at REAL
+        )
+    ''')
+
     # ✅ جدول پیشرفت فازها (برای resume)
     c.execute('''
         CREATE TABLE IF NOT EXISTS web_phase_progress (
@@ -950,3 +967,27 @@ def get_tower_of_hanoi(participant_id: str) -> dict | None:
     except Exception as e:
         print(f"⚠️ get_tower_of_hanoi: {e}")
         return None
+
+def save_sme_review(
+    expert_id: str, expert_name: str, scenario_id: str,
+    clarity: int, realism: int, cultural_fit: int,
+    competency_match: int, essentiality: int, comment: str
+) -> bool:
+    try:
+        conn = get_connection()
+        c = conn.cursor()
+        c.execute('''
+            INSERT INTO web_sme_reviews
+            (expert_id, expert_name, scenario_id, clarity, realism,
+             cultural_fit, competency_match, essentiality, comment, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            expert_id, expert_name, scenario_id, clarity, realism,
+            cultural_fit, competency_match, essentiality, comment, time.time()
+        ))
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        print(f"❌ خطا در ذخیره ارزیابی متخصص: {e}")
+        return False

@@ -24,6 +24,7 @@ DEFAULT_CONFIG = {
         "nights": True,
         "letter_to_self": True,
         "epilogue": True,
+        "sme_review": True,  # ✅ پرسشنامه نخبگان
     },
     "phases": {
         "phase1": True,

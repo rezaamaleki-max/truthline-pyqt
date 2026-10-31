@@ -7,6 +7,7 @@ from web_app.data.items.sd3_items import (
     SD3_ITEMS, SD3_LIKERT_LABELS, compute_sd3_scores,
 )
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 @ui.page('/sd3')
@@ -16,6 +17,8 @@ def sd3_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("sd3", participant_id, session_id)  
 
     setup_page_audio(None)
 

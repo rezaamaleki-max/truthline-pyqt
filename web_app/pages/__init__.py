@@ -20,3 +20,4 @@ from web_app.pages import thank_you      # noqa: F401
 from web_app.pages import dev_panel      # noqa: F401
 from web_app.pages import letter_to_self # noqa: F401  
 from web_app.pages import download_report # noqa: F401
+from web_app.pages import sme_review  

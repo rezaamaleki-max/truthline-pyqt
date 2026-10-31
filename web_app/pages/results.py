@@ -9,6 +9,8 @@ from web_app.db_manager import (
     get_relationships_web,
 )
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
+
 
 COMPETENCY_FA = {
     "honesty": "صداقت و یکپارچگی",
@@ -436,9 +438,12 @@ async def _io(func: Callable[..., _T], **kwargs: Any) -> _T:
 @ui.page('/results')
 async def results_page():
     participant_id = app.storage.user.get('participant_id')
-    if not participant_id:
+    session_id = app.storage.user.get('session_id') 
+    if not participant_id or not session_id:  # ✅ بررسی هر دو
         ui.navigate.to('/')
         return
+
+    mark_page_enter("results", participant_id, session_id)  
 
     setup_page_audio("results")
 

@@ -29,6 +29,7 @@ from web_app.db_manager import (
     log_evidence_web,
 )
 from web_app.audio import play_scan_sfx, play_toast_sfx
+from web_app.time_tracker import mark_page_enter  # ✅ در بالای فایل اضافه کنید
 
 
 # ============================================================
@@ -101,6 +102,9 @@ async def tower_of_hanoi_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    # ✅ ثبت زمان ورود به آزمون برج هانوی
+    mark_page_enter("tower_of_hanoi", participant_id, session_id)
 
     setup_page_audio(None)
     ui.query('body').style(PAGE_CSS)

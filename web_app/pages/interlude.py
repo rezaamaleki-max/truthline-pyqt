@@ -13,6 +13,7 @@ from web_app.components.dialogue_viewer import (
     render_dialogue_viewer,
 )
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 @ui.page('/interlude/{day_key}')
@@ -22,6 +23,8 @@ async def interlude_page(day_key: str):
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter(f"interlude_{day_key}", participant_id, session_id)  
 
     setup_page_audio("interlude")
 

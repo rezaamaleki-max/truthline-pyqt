@@ -45,3 +45,13 @@ def index_page():
             'bg-cyan-600 hover:bg-cyan-500 text-white '
             'text-xl font-bold py-4 px-16 mt-6 rounded-lg'
         )
+
+        # ✅ لینک ورود متخصصان (SME)
+        from web_app.admin_config import is_section_enabled
+        if is_section_enabled("sme_review"):
+            ui.button(
+                'ورود متخصصان (SME Review)',
+                on_click=lambda: ui.navigate.to('/sme-review'),
+            ).classes(
+                'bg-slate-700 hover:bg-slate-600 text-sm py-2 px-6 mt-2 rounded-lg text-gray-300'
+            )

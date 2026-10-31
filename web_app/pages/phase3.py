@@ -3,7 +3,7 @@ from nicegui import ui, app
 from web_app.config import PAGE_CSS, PHASE_SCENARIOS, PHASE_TITLES
 from web_app.engine.scenario_runner import render_phase
 from web_app.components.audio_control import setup_page_audio
-
+from web_app.time_tracker import mark_page_enter  
 
 @ui.page('/phase3')
 async def phase3_page():
@@ -12,6 +12,8 @@ async def phase3_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("phase3", participant_id, session_id)  
 
     setup_page_audio("phase3")
 

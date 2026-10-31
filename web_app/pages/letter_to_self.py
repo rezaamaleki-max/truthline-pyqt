@@ -14,6 +14,7 @@ from web_app.db_manager import (
     save_self_letter, log_event_threadsafe,
 )
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 @ui.page('/letter-to-self')
@@ -24,6 +25,8 @@ def letter_to_self_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("letter-to-self", participant_id, session_id)  
 
     setup_page_audio(None)
 

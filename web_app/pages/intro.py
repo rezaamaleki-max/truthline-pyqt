@@ -17,6 +17,7 @@ from nicegui import ui, app
 from web_app.config import PAGE_CSS, TEST_MODE
 from web_app.character_utils import resolve_portrait_url
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 # ============================================================
@@ -214,6 +215,8 @@ async def intro_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("intro", participant_id, session_id)  
 
     # ✅ موسیقی مقدمه (station_calm)
     setup_page_audio("intro")

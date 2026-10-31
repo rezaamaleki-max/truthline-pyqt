@@ -12,6 +12,8 @@ from web_app.components.dialogue_viewer import (
     render_dialogue_viewer,
 )
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
+
 
 
 @ui.page('/night/{night_num}')
@@ -21,6 +23,8 @@ async def night_page(night_num: str):
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter(f"night_{night_num}", participant_id, session_id)  
 
     setup_page_audio("night")
 

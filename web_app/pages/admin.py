@@ -108,6 +108,7 @@ def admin_page():
                     "nights": "شب‌های ایستگاه",
                     "letter_to_self": "نامه به خود",
                     "epilogue": "پایان روایی (Epilogue)",
+                    "sme_review": "پرسشنامه ارزیابی متخصصان (SME)",  # ✅
                 }
                 for key, label in section_labels.items():
                     section_boxes[key] = ui.checkbox(

@@ -5,7 +5,7 @@ from web_app.config import (
 )
 from web_app.engine.scenario_runner import render_phase
 from web_app.components.audio_control import setup_page_audio
-
+from web_app.time_tracker import mark_page_enter  
 
 @ui.page('/phase4')
 async def phase4_page():
@@ -14,6 +14,8 @@ async def phase4_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("phase1", participant_id, session_id)  
 
     setup_page_audio("phase4")
 

@@ -4,6 +4,7 @@ from web_app.config import PAGE_CSS
 from web_app.db_manager import save_crt_data, log_event_threadsafe
 from web_app.data.items.crt_items import CRT_ITEMS, score_crt
 from web_app.components.audio_control import setup_page_audio
+from web_app.time_tracker import mark_page_enter  
 
 
 @ui.page('/crt')
@@ -13,6 +14,8 @@ def crt_page():
     if not participant_id or not session_id:
         ui.navigate.to('/')
         return
+
+    mark_page_enter("crt", participant_id, session_id)  
 
     setup_page_audio(None)
 
