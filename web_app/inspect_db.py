@@ -8,7 +8,7 @@ import json
 from collections import Counter
 
 WEB_APP_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(WEB_APP_DIR, "data", "participants_web.db")
+DB_PATH = os.path.join(WEB_APP_DIR, "data", "db", "participants_web.db")
 
 COMPETENCY_FA = {
     "honesty": "صداقت",
