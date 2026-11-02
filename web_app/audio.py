@@ -371,10 +371,14 @@ def init_page_music(music_key: str | None):
 
 def play_sfx(name: str):
     """پخش SFX با نام مشخص."""
-    ui.run_javascript(
-        f'window._tlAudio && '
-        f'window._tlAudio.playSfx("{name}");'
-    )
+    try:
+        ui.run_javascript(
+            f'window._tlAudio && '
+            f'window._tlAudio.playSfx("{name}");'
+        )
+    except RuntimeError:
+        # اگر خارج از context رابط کاربری فراخوانی شد، بی‌صدا رد شو
+        pass
 
 
 def play_choice_sfx():

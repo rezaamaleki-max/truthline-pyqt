@@ -387,7 +387,8 @@ async def intro_page():
                     e.action.keydown
                     and e.key.name in (" ", "Space", "Enter")
                 ):
-                    asyncio.create_task(_advance())
+                    # ✅ استفاده از ui.timer به جای asyncio.create_task
+                    ui.timer(0.01, _advance, once=True)
             except Exception:
                 pass
 

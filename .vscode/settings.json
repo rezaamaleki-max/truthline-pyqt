@@ -8,5 +8,11 @@
             "envManager": "ms-python.python:system",
             "packageManager": "ms-python.python:pip"
         }
+    ],
+    "cSpell.language": "en,fa",
+    "cSpell.ignoreWords": [
+        "nicegui",
+        "PyQt",
+        "pypi"
     ]
 }
