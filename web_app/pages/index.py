@@ -46,12 +46,22 @@ def index_page():
             'text-xl font-bold py-4 px-16 mt-6 rounded-lg'
         )
 
-        # ✅ لینک ورود متخصصان (SME)
+        # ✅ لینک ورود متخصصان (SME) با هشدار بصری
         from web_app.admin_config import is_section_enabled
         if is_section_enabled("sme_review"):
-            ui.button(
-                'ورود متخصصان (SME Review)',
-                on_click=lambda: ui.navigate.to('/sme-review'),
-            ).classes(
-                'bg-slate-700 hover:bg-slate-600 text-sm py-2 px-6 mt-2 rounded-lg text-gray-300'
-            )
+            with ui.column().classes('w-full items-center gap-2 mt-8'):
+                # خط جداکننده
+                ui.element('div').classes('w-64 h-px bg-slate-700 my-2')
+                
+                ui.button(
+                    '🧑‍🔬 ورود متخصصان (پس از انجام بازی)',
+                    on_click=lambda: ui.navigate.to('/sme-review'),
+                ).classes(
+                    'bg-slate-800 hover:bg-slate-700 border border-slate-600 text-sm py-2 px-6 rounded-lg text-gray-300'
+                )
+                ui.label(
+                    "توجه متخصصان گرامی: لطفاً ابتدا بازی را انجام دهید "
+                    "و سپس فرم ارزیابی سناریوها (SME) را تکمیل نمایید."
+                ).classes(
+                    'text-xs text-orange-400 text-center max-w-md leading-relaxed'
+                )

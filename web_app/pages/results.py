@@ -750,6 +750,15 @@ async def results_page():
             'w-full py-3 text-lg font-bold bg-orange-600 hover:bg-orange-500 mt-4 rounded-lg'
         )
 
+        # ✅ راهکار ۳: دکمه ورود متخصصان در صفحه نتایج
+        from web_app.admin_config import is_section_enabled
+        if is_section_enabled("sme_review"):
+            ui.button(
+                "🧑‍🔬 ورود متخصصان به فرم ارزیابی سناریوها",
+                on_click=lambda: ui.navigate.to('/sme-review')
+            ).classes(
+                'w-full bg-purple-600 hover:bg-purple-500 text-white text-lg font-bold py-3 mt-4 rounded-lg'
+            )
 
         # ---- دکمه‌ی پایان ----
         async def end_session():

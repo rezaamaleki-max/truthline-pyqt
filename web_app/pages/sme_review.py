@@ -16,6 +16,25 @@ def sme_review_page():
 
     ui.query('body').style(PAGE_CSS)
     
+    # ✅ راهکار ۲: بررسی اینکه آیا کاربر اصلاً بازی را شروع کرده است یا خیر
+    participant_id = app.storage.user.get('participant_id')
+    
+    if not participant_id:
+        with ui.column().classes('w-full h-screen items-center justify-center bg-slate-900'):
+            with ui.card().classes('p-8 bg-slate-800 border-2 border-orange-500 rounded-xl shadow-2xl w-[500px] text-center'):
+                ui.label("⚠️ توجه متخصص گرامی").classes('text-2xl font-bold text-orange-400 mb-4')
+                ui.label(
+                    "شما هنوز بازی «بحران در ایستگاه کاسپین» را انجام نداده‌اید. "
+                    "برای تکمیل فرم ارزیابی سناریوها (SME)، ابتدا باید بازی را انجام دهید "
+                    "تا با فضای سناریوها و شخصیت‌ها آشنا شوید."
+                ).classes('text-sm text-gray-300 leading-relaxed mb-6')
+                
+                ui.button(
+                    "بازگشت به صفحه شروع بازی", 
+                    on_click=lambda: ui.navigate.to('/')
+                ).classes('w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 rounded-lg')
+        return
+
     # مقداردهی اولیه وضعیت در نشست مرورگر
     if 'sme_evaluated' not in app.storage.user:
         app.storage.user['sme_evaluated'] = []
