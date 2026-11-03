@@ -26,10 +26,12 @@ def index_page():
         ui.label('بحران ایستگاه کاسپین').classes('text-2xl text-white')
         ui.separator().classes('w-64 my-4')
         ui.label(
-            'به پژوهش حاضر خوش آمدید. این یک بازی '
-            'تصمیم‌گیری در محیطی شبیه‌سازی‌شده است. '
-            'لطفاً با دقت و صداقت پاسخ دهید.'
-        ).classes('text-lg text-gray-300 text-center max-w-xl leading-relaxed')
+            'به پژوهش حاضر خوش آمدید. این یک بازی تصمیم‌گیری در محیطی شبیه‌سازی‌شده است '
+            'که بخشی از یک رساله دکتری در حوزه ارزیابی ویژگی‌های شخصیتی با استفاده از '
+            'بازی‌های جدی (Serious Games) می‌باشد. لطفاً با دقت و در فضایی آرام به '
+            'موقعیت‌ها پاسخ دهید. در پایان، گزارش جامعی از ویژگی‌های ارزیابی‌شده خود '
+            'دریافت خواهید کرد تا بتوانید نتایج خود را با دیگران مقایسه کنید.'
+        ).classes('text-base text-gray-300 text-center max-w-2xl leading-relaxed')
 
         with ui.card().classes('w-full bg-slate-800 border border-cyan-400 p-6 mt-6'):
             ui.label('📋 راهنما').classes('text-xl font-bold text-cyan-400 mb-3')
